@@ -1,11 +1,81 @@
+@import './assets/scss/variables';
+
+* {
+  background-color: $background-color;
+  font-family: "Comic Sans MS";
+}
+
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
   h1 {
-    text-align: center;
+    margin-top: 30px;
+    color: $text-color;
   }
-  tr{
-    td{
-      padding: 5px;
-      border: 1px solid black;
+
+  input {
+    background-color: aliceblue;
+    border-radius: 4px;
+    width: 300px;
+    height: 30px;
+    margin-bottom: 30px;
+  }
+
+  table {
+
+    color: #555b6e;
+    border-collapse: collapse;
+
+    thead {
+      border-bottom: 2px solid $text-color;
+
+      th {
+        padding: 5px;
+        border-right: 2px solid $text-color;
+        text-align: center;
+
+        &:last-child {
+          border-right: none;
+        }
+        .textThead{
+          color: $button-color;
+        }
+        .sortArrayWrapper {
+          .sortArray {
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            background-color: $main-color;
+            cursor: pointer;
+            color: white;
+          }
+        }
+
+      }
+    }
+
+    tbody {
+
+      tr {
+        td {
+          border-right: 2px solid $text-color;
+          padding: 5px;
+
+          &:last-child {
+            border-right: none;
+          }
+        }
+      }
     }
   }
+
+
 }

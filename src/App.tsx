@@ -23,9 +23,7 @@ function App() {
         setUsersState(users.map(el => el))
     }, [])
 
-    // const getState = () => setUsersState(users.map(el => el));
-
-    //sort functions
+    //sort functions - need refactor ---------------------------------------------------------------------
 
     const handlerSortIdUp = () => {
         if (usersState) {
@@ -229,47 +227,72 @@ function App() {
     return (
         <div className={style.wrapper}>
             <h1>Table Users</h1>
-            <input  type="text" placeholder='Search...' onChange={(event)=>setSearchData(event.target.value)}/>
+            <input  type="text" placeholder='Search by user name...' onChange={(event)=>setSearchData(event.target.value)}/>
             <table>
                 <thead>
                 <tr>
-                    <th>
-                        <button onClick={handlerSortUserNameUp}>&#5169;</button>
-                        <button onClick={handlerSortUserNameDown}>&#5167;</button>
-                        <div>User Name</div>
+                    <th className={style.th}>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortUserNameUp}>&#5169;</div>
+                        </div>
+                        <div className={style.textThead}>User</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortUserNameDown}>&#5167;</div>
+                        </div>
                     </th>
                     <th>
-                        <button onClick={handlerSortIdUp}>&#5169;</button>
-                        <button onClick={handlerSortIdDown}>&#5167;</button>
-                        <div>Id</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortIdUp}>&#5169;</div>
+                        </div>
+                        <div className={style.textThead}>Id</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortIdDown}>&#5167;</div>
+                        </div>
                     </th>
                     <th>
-                        <button onClick={handlerSortFirstNameUp}>&#5169;</button>
-                        <button onClick={handlerSortFirstNameDown}>&#5167;</button>
-                        <div>First Name</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortFirstNameUp}>&#5169;</div>
+                        </div>
+                        <div className={style.textThead}>First</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortFirstNameDown}>&#5167;</div>
+                        </div>
                     </th>
                     <th>
-                        <button onClick={handlerSortLastNameUp}>&#5169;</button>
-                        <button onClick={handlerSortLastNameDown}>&#5167;</button>
-                        <div>Last Name</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortLastNameUp}>&#5169;</div>
+                        </div>
+                        <div className={style.textThead}>Last</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortLastNameDown}>&#5167;</div>
+                        </div>
                     </th>
                     <th>
-                        <button onClick={handlerSortEmailUp}>&#5169;</button>
-                        <button onClick={handlerSortEmailDown}>&#5167;</button>
-                        <div>Email</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortEmailUp}>&#5169;</div>
+                        </div>
+                        <div className={style.textThead}>Email</div>
+                        <div className={style.sortArrayWrapper}>
+                            <div className={style.sortArray} onClick={handlerSortEmailDown}>&#5167;</div>
+                        </div>
                     </th>
                     <th>
-                        <button onClick={handlerSortPayStatusUp}>&#5169;</button>
-                        <button onClick={handlerSortPayStatusDown}>&#5167;</button>
-                        <div>Pay Status</div>
+                        <div>
+                            <div className={style.sortArrayWrapper}>
+                                <div className={style.sortArray} onClick={handlerSortPayStatusUp}>&#5169;</div>
+                            </div>
+                            <div className={style.textThead}>Status</div>
+                            <div className={style.sortArrayWrapper}>
+                                <div className={style.sortArray} onClick={handlerSortPayStatusDown}>&#5167;</div>
+                            </div>
+                        </div>
                     </th>
-
-                    <th>Link</th>
+                    <th style={{color: '#cb997e'}}>Link</th>
                 </tr>
                 </thead>
                 <tbody>
                 {usersState ? usersState.filter((val)=>{
-                    if(searchData == ''){
+                    if(searchData === ''){
                         return val
                     } else if (val.username.toLowerCase().includes(searchData.toLowerCase())) {
                         return val
