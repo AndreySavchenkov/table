@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './App.module.scss';
 import users from './db/ForTable.json';
 
@@ -17,12 +17,34 @@ function App() {
     }
 
     const [usersState, setUsersState] = useState<usersType>([])
+    const [searchData, setSearchData] = useState('')
 
-    const getState = () => setUsersState(users.map(el => el));
+    useEffect(() => {
+        setUsersState(users.map(el => el))
+    }, [])
 
-    let handlerSort = () => {
-        console.log('handle sort');
-        console.log(usersState);
+    // const getState = () => setUsersState(users.map(el => el));
+
+    //sort functions
+
+    const handlerSortIdUp = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+
+                if (a.id > b.id) {
+                    return 1;
+                }
+                if (a.id < b.id) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortIdDown = () => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -34,7 +56,172 @@ function App() {
                 }
                 return 0;
             })
-            return setUsersState(sortMap)
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortUserNameUp = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+
+                if (a.username > b.username) {
+                    return 1;
+                }
+                if (a.username < b.username) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortUserNameDown = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+                if (a.username < b.username) {
+                    return 1;
+                }
+                if (a.username > b.username) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortFirstNameUp = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+
+                if (a.first_name > b.first_name) {
+                    return 1;
+                }
+                if (a.first_name < b.first_name) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortFirstNameDown = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+                if (a.first_name < b.first_name) {
+                    return 1;
+                }
+                if (a.first_name > b.first_name) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortLastNameUp = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+
+                if (a.last_name > b.last_name) {
+                    return 1;
+                }
+                if (a.last_name < b.last_name) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortLastNameDown = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+                if (a.last_name < b.last_name) {
+                    return 1;
+                }
+                if (a.last_name > b.last_name) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortEmailUp = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+
+                if (a.email > b.email) {
+                    return 1;
+                }
+                if (a.email < b.email) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortEmailDown = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+                if (a.email < b.email) {
+                    return 1;
+                }
+                if (a.email > b.email) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortPayStatusUp = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+
+                if (a.pay_status > b.pay_status) {
+                    return 1;
+                }
+                if (a.pay_status < b.pay_status) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
+        }
+    }
+
+    const handlerSortPayStatusDown = () => {
+        if (usersState) {
+            let sortMap = usersState.sort(function (a, b) {
+                console.log('users sort');
+                if (a.pay_status < b.pay_status) {
+                    return 1;
+                }
+                if (a.pay_status > b.pay_status) {
+                    return -1;
+                }
+                return 0;
+            })
+            return setUsersState([...sortMap])
         }
     }
 
@@ -42,21 +229,52 @@ function App() {
     return (
         <div className={style.wrapper}>
             <h1>Table Users</h1>
-            <button onClick={getState}>Get State</button>
+            <input  type="text" placeholder='Search...' onChange={(event)=>setSearchData(event.target.value)}/>
             <table>
                 <thead>
                 <tr>
-                    <td>User Name</td>
-                    <td onClick={handlerSort}>Id</td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Email</td>
-                    <td>Pay Status</td>
-                    <td>Link</td>
+                    <th>
+                        <button onClick={handlerSortUserNameUp}>&#5169;</button>
+                        <button onClick={handlerSortUserNameDown}>&#5167;</button>
+                        <div>User Name</div>
+                    </th>
+                    <th>
+                        <button onClick={handlerSortIdUp}>&#5169;</button>
+                        <button onClick={handlerSortIdDown}>&#5167;</button>
+                        <div>Id</div>
+                    </th>
+                    <th>
+                        <button onClick={handlerSortFirstNameUp}>&#5169;</button>
+                        <button onClick={handlerSortFirstNameDown}>&#5167;</button>
+                        <div>First Name</div>
+                    </th>
+                    <th>
+                        <button onClick={handlerSortLastNameUp}>&#5169;</button>
+                        <button onClick={handlerSortLastNameDown}>&#5167;</button>
+                        <div>Last Name</div>
+                    </th>
+                    <th>
+                        <button onClick={handlerSortEmailUp}>&#5169;</button>
+                        <button onClick={handlerSortEmailDown}>&#5167;</button>
+                        <div>Email</div>
+                    </th>
+                    <th>
+                        <button onClick={handlerSortPayStatusUp}>&#5169;</button>
+                        <button onClick={handlerSortPayStatusDown}>&#5167;</button>
+                        <div>Pay Status</div>
+                    </th>
+
+                    <th>Link</th>
                 </tr>
                 </thead>
                 <tbody>
-                {usersState ? usersState.map(el => {
+                {usersState ? usersState.filter((val)=>{
+                    if(searchData == ''){
+                        return val
+                    } else if (val.username.toLowerCase().includes(searchData.toLowerCase())) {
+                        return val
+                    }
+                }).map(el => {
                     console.log('map');
                     return <tr key={el.id}>
                         <td>{el.username}</td>
