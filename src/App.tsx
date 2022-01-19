@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import style from './App.module.scss';
 import users from './db/ForTable.json';
+import {ThDataComponent} from "./components/ThDataComponent";
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
 
     //sort functions - need refactor ---------------------------------------------------------------------
 
-    const handlerSortIdUp = () => {
+    const handlerSortIdUp = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -40,9 +41,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortIdDown = () => {
+    const handlerSortIdDown = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -56,9 +57,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortUserNameUp = () => {
+    const handlerSortUserNameUp = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -73,9 +74,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortUserNameDown = () => {
+    const handlerSortUserNameDown = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -89,9 +90,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortFirstNameUp = () => {
+    const handlerSortFirstNameUp = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -106,9 +107,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortFirstNameDown = () => {
+    const handlerSortFirstNameDown = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -122,9 +123,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortLastNameUp = () => {
+    const handlerSortLastNameUp = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -139,9 +140,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortLastNameDown = () => {
+    const handlerSortLastNameDown = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -155,9 +156,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortEmailUp = () => {
+    const handlerSortEmailUp = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -172,9 +173,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortEmailDown = () => {
+    const handlerSortEmailDown = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -188,9 +189,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortPayStatusUp = () => {
+    const handlerSortPayStatusUp = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -205,9 +206,9 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
-    const handlerSortPayStatusDown = () => {
+    const handlerSortPayStatusDown = useCallback(() => {
         if (usersState) {
             let sortMap = usersState.sort(function (a, b) {
                 console.log('users sort');
@@ -221,78 +222,33 @@ function App() {
             })
             return setUsersState([...sortMap])
         }
-    }
+    }, [usersState])
 
 
     return (
         <div className={style.wrapper}>
             <h1>Table Users</h1>
-            <input  type="text" placeholder='Search by user name...' onChange={(event)=>setSearchData(event.target.value)}/>
+            <input type="text" placeholder='Search by user name...'
+                   onChange={(event) => setSearchData(event.target.value)}/>
             <table>
                 <thead>
                 <tr>
-                    <th className={style.th}>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortUserNameUp}>&#5169;</div>
-                        </div>
-                        <div className={style.textThead}>User</div>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortUserNameDown}>&#5167;</div>
-                        </div>
-                    </th>
-                    <th>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortIdUp}>&#5169;</div>
-                        </div>
-                        <div className={style.textThead}>Id</div>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortIdDown}>&#5167;</div>
-                        </div>
-                    </th>
-                    <th>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortFirstNameUp}>&#5169;</div>
-                        </div>
-                        <div className={style.textThead}>First</div>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortFirstNameDown}>&#5167;</div>
-                        </div>
-                    </th>
-                    <th>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortLastNameUp}>&#5169;</div>
-                        </div>
-                        <div className={style.textThead}>Last</div>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortLastNameDown}>&#5167;</div>
-                        </div>
-                    </th>
-                    <th>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortEmailUp}>&#5169;</div>
-                        </div>
-                        <div className={style.textThead}>Email</div>
-                        <div className={style.sortArrayWrapper}>
-                            <div className={style.sortArray} onClick={handlerSortEmailDown}>&#5167;</div>
-                        </div>
-                    </th>
-                    <th>
-                        <div>
-                            <div className={style.sortArrayWrapper}>
-                                <div className={style.sortArray} onClick={handlerSortPayStatusUp}>&#5169;</div>
-                            </div>
-                            <div className={style.textThead}>Status</div>
-                            <div className={style.sortArrayWrapper}>
-                                <div className={style.sortArray} onClick={handlerSortPayStatusDown}>&#5167;</div>
-                            </div>
-                        </div>
-                    </th>
+                    <ThDataComponent name='Users' callbackUp={handlerSortUserNameUp}
+                                     callbackDown={handlerSortUserNameDown}/>
+                    <ThDataComponent name='Id' callbackUp={handlerSortIdUp} callbackDown={handlerSortIdDown}/>
+                    <ThDataComponent name='First' callbackUp={handlerSortFirstNameUp}
+                                     callbackDown={handlerSortFirstNameDown}/>
+                    <ThDataComponent name='Last' callbackUp={handlerSortLastNameUp}
+                                     callbackDown={handlerSortLastNameDown}/>
+                    <ThDataComponent name='Email' callbackUp={handlerSortEmailUp} callbackDown={handlerSortEmailDown}/>
+                    <ThDataComponent name='Status' callbackUp={handlerSortPayStatusUp}
+                                     callbackDown={handlerSortPayStatusDown}/>
                     <th style={{color: '#cb997e'}}>Link</th>
                 </tr>
                 </thead>
                 <tbody>
-                {usersState ? usersState.filter((val)=>{
-                    if(searchData === ''){
+                {usersState ? usersState.filter((val) => {
+                    if (searchData === '') {
                         return val
                     } else if (val.username.toLowerCase().includes(searchData.toLowerCase())) {
                         return val
